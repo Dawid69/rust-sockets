@@ -16,7 +16,7 @@ fn main() {
     // create new socket
     let socket = Path::new(SOCKET_PATH);
 
-    let _ = socket::open_socket_rx(socket, ipc_tx.clone());
+    let _ = socket::open_socket_rx(socket, ipc_tx);
 
     let _ = socket::socket_tx(socket, "Hello");
 
