@@ -11,6 +11,7 @@ use std::thread;
 pub fn open_socket_rx(socket: &Path, tx_channel: Sender<String>) -> Result<(), String> {
     if socket.exists() {
         fs::remove_file(&socket).unwrap();
+        println!("Socket still exists");
     }
 
     let listener = match UnixListener::bind(socket) {
@@ -60,6 +61,6 @@ pub fn socket_tx(socket: &Path, payload: &str) -> Result<(), String> {
     let x = payload.as_bytes();
 
     socket.write_all(x).unwrap();
-
+    println!("Sent data to socket");
     Ok(())
 }
